@@ -125,7 +125,7 @@ describe('Greetings App' , function(){
             assert.deepEqual(2, greetExercise.getCounter());
 
         });
-        it('should increment the counter to 5, once % names are greeted.' , function(){
+        it('should increment the counter to 5, once the names are greeted.' , function(){
             let greetExercise = greeting();
 
             greetExercise.addNames('hluMa', 'english');
