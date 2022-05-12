@@ -346,6 +346,7 @@ h3{
   }
 
   .errorMessage{
+    text-align: center;
     font-size: large;
     color:#c4362c;
   }
