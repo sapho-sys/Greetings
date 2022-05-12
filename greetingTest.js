@@ -72,7 +72,7 @@ describe('Greetings App' , function(){
             assert.deepEqual({Sapho: 3}, greetExercise.namesAdded());
 
         });
-        it('should increment Thanos, Phumza & Lukhanyo as a key to my empty object and give it a value of 1 which will represent how many time(s) is the name greeted.' , function(){
+        it('should add 1 name to my local storage and give it a value of 1 which will represent how many time(s) is the name greeted.' , function(){
             let greetExercise = greeting();
 
             
@@ -83,7 +83,7 @@ describe('Greetings App' , function(){
             assert.deepEqual({Thanos: 1, Phumza: 1, Lukhanyo: 1}, greetExercise.namesAdded());
 
         });
-        it('should add Thanos, Phumza & Lukhanyo as a key to my empty object and give it a value of 2 which will represent how many time(s) is the name greeted.' , function(){
+        it('should add 2 names to my local storage and give it a value of 2 which will represent how many time(s) is the name greeted.' , function(){
             let greetExercise = greeting();
 
             
@@ -99,7 +99,7 @@ describe('Greetings App' , function(){
         });
     });
     describe('Greet counter' , function(){
-        it('should increment the counter from 0 to 1, once Sapho alone is greeted.' , function(){
+        it('should increment the counter from 0 to 1, when one name is greeted.' , function(){
             let greetExercise = greeting();
 
             greetExercise.addNames('saPho', 'english');
@@ -107,7 +107,7 @@ describe('Greetings App' , function(){
             assert.deepEqual(1, greetExercise.getCounter());
 
         });
-        it("shouldn't increment the counter, once Sapho is greeted again." , function(){
+        it("shouldn't increment the counter, when the name is greeted again." , function(){
             let greetExercise = greeting();
 
             greetExercise.addNames('saPho', 'english');
@@ -116,7 +116,7 @@ describe('Greetings App' , function(){
             assert.deepEqual(1, greetExercise.getCounter());
 
         });
-        it('should increment the counter to 2, once Thanos and Lukhanyo are greeted.' , function(){
+        it('should increment the counter to 2, once 2 names are greeted.' , function(){
             let greetExercise = greeting();
 
             greetExercise.addNames('lukhanYo', 'english');
@@ -125,7 +125,7 @@ describe('Greetings App' , function(){
             assert.deepEqual(2, greetExercise.getCounter());
 
         });
-        it('should increment the counter to 5, once Hluma, Sapho, Lukhanyo, Thanos and Phumza are greeted.' , function(){
+        it('should increment the counter to 5, once % names are greeted.' , function(){
             let greetExercise = greeting();
 
             greetExercise.addNames('hluMa', 'english');
