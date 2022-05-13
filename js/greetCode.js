@@ -1,17 +1,12 @@
-
-
 //get input from radio button 
 var radioBtn = document.getElementsByName("choice");
-
 //get table
 var display = document.getElementById("display");
-
 //create new row
 var newRow = display.insertRow(row);
-
 //add cells
 var cell1 = newRow.insertCell(0);
-var cell2 = newRow.insertCell(1)
+var cell2 = newRow.insertCell(1);
 var cell3 = newRow.insertCell(2);
 
 var row = 1;
@@ -22,12 +17,12 @@ var counter = localStorage.getItem('on_click_counter');
 const RegExp = /^[A-Za-z]+$/;
 
 
-
+// var Instance=greetFactory();
 function displayMembers() {
 
   //get inputs from fields
   var name = document.getElementById("name").value;
-  var surname = document.getElementById("surname").value;
+  
 
 
 
@@ -50,20 +45,20 @@ function displayMembers() {
   //look at the value checked in the radioBtns then greet in the checked language
   if (radio === "English") {
 
-    cell2.innerHTML = "Hello, " + name + " " + surname;
+    cell2.innerHTML = "Hello, " + name;
 
   } else if (radio === "IsiXhosa") {
 
-    cell2.innerHTML = "Molo, " + name + " " + surname;
+    cell2.innerHTML = "Molo, " + name;
 
   } else if (radio === "Afrikaans") {
 
-    cell2.innerHTML = "Hallo, " + name + " " + surname;
+    cell2.innerHTML = "Hallo, " + name;
   }
 
 
   // make sure all fields are filled
-  if (!name || !surname || !radio) {
+  if (!name || !radio) {
     document.getElementById("error").innerHTML ="Please see to it that you fill every textbox!";
 
     setTimeout(function(){
@@ -118,7 +113,9 @@ function displayMembers() {
   };
 
   if (!existingEntries.includes(entry["name"])) {
+
     existingEntries.push(entry["name"]);
+    
     localStorage.setItem("allEntries", JSON.stringify(existingEntries));
 
 
@@ -130,7 +127,7 @@ function displayMembers() {
   //clear fields
   document.getElementById("name").value = "";
   
-  document.getElementById("surname").value = "";
+
   
   document.getElementsByClassName("choice").value = "";
   
