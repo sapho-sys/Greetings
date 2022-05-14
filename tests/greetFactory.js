@@ -1,7 +1,7 @@
 
 function greeting(namesData) {
     var theName = "";
-    var storeNames = namesData || {};
+var storeNames = namesData || {};
     var counter = 0;
     const RegExp = /^[A-Za-z]+$/;
 
@@ -50,7 +50,7 @@ function greeting(namesData) {
     }
 
     function getCounter(){
-        return Object.values(storeNames).length;
+        return Object.keys(storeNames).length;
 
     }
 

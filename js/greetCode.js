@@ -11,18 +11,27 @@ var cell3 = newRow.insertCell(2);
 
 var row = 1;
 
+// Parse the JSON stored in allEntries
+var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+
+// If no existing data, create an array
+// Otherwise, convert the localStorage string to an array
+if (existingEntries == null) existingEntries = {};
+
+
+
 //counter in local storage
 var counter = localStorage.getItem('on_click_counter');
 
 const RegExp = /^[A-Za-z]+$/;
 
 
-// var Instance=greetFactory();
+var Instance=greeting(existingEntries);
 function displayMembers() {
 
   //get inputs from fields
   var name = document.getElementById("name").value;
-  
+
 
 
 
@@ -41,49 +50,43 @@ function displayMembers() {
     }
   }
 
+Instance.setName(name);
 
   //look at the value checked in the radioBtns then greet in the checked language
   if (radio === "English") {
-
-    cell2.innerHTML = "Hello, " + name;
-
+    cell2.innerHTML = "Hello, " + Instance.getName();
   } else if (radio === "IsiXhosa") {
-
-    cell2.innerHTML = "Molo, " + name;
-
+    cell2.innerHTML = "Molo, " + Instance.getName();
   } else if (radio === "Afrikaans") {
-
-    cell2.innerHTML = "Hallo, " + name;
+    cell2.innerHTML = "Hallo, " + Instance.getName();
   }
 
-
-  // make sure all fields are filled
-  if (!name || !radio) {
-    document.getElementById("error").innerHTML ="Please see to it that you fill every textbox!";
-
-    setTimeout(function(){
-      document.getElementById("error").innerHTML ="";
-      location.reload();
-      
-   }, 10000);
-    
-    return;
-  }
-
-
-//match values entered with names already store and don't allow characters/numbers to be added
+  Instance.addNames(name, radio);
 
   if (name.match(RegExp)) {
     var strName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-  }else{
-    document.getElementById("error").innerHTML ="Please enter Alphabetical values!";
-
-    setTimeout(function(){
-      document.getElementById("error").innerHTML ="";
+    document.getElementById("name").value = "";
+    document.getElementById('tick').checked = false;
+    document.getElementById('tick2').checked = false;
+    document.getElementById('tick3').checked = false;
+  } else if (!name || !radio) {
+    document.getElementById("error").innerHTML = "Please see to it that you fill every textbox!";
+    setTimeout(function () {
+      document.getElementById("error").innerHTML = "";
       location.reload();
-      
-   }, 10000);
-    
+
+    }, 5000);
+
+    return;
+  } else {
+    document.getElementById("error").innerHTML = "Please enter Alphabetical values!";
+
+    setTimeout(function () {
+      document.getElementById("error").innerHTML = "";
+      location.reload();
+
+    }, 5000);
+
     return;
 
   }
@@ -92,79 +95,23 @@ function displayMembers() {
   //append value of the chosen language to my cells
   cell3.innerHTML = radio;
 
-
-
-
-  // Parse the JSON stored in allEntries
-  var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
-
-  // If no existing data, create an array
-  // Otherwise, convert the localStorage string to an array
-  if (existingEntries == null) existingEntries = [];
-
-
-
-  //objects that will be pushed to existingEntries array
-
-  var entry = {
-    "name": strName
-    
-
-  };
-
-  if (!existingEntries.includes(entry["name"])) {
-
-    existingEntries.push(entry["name"]);
-    
-    localStorage.setItem("allEntries", JSON.stringify(existingEntries));
-
+    localStorage.setItem("allEntries", JSON.stringify(Instance.namesAdded()));
 
     //calling counter function
     myCounter(counter);
 
   }
 
-  //clear fields
-  document.getElementById("name").value = "";
-  
-
-  
-  document.getElementsByClassName("choice").value = "";
-  
-
-
-
-
-}
-
-
 //load counter to set to null
 myCounter();
-
-
 
 function myCounter() {
   //set counter to local storage
   localStorage.setItem("on_click_counter", counter);
-
   //retrieve counter from local storage
-  document.getElementById("counter").innerHTML = counter;
-
-  //append value in cells
-  // cell1.innerHTML = counter;
-
-  if (counter === null) {
-    counter = 0;
-  }
-
-  counter++;
-
+  document.getElementById("counter").innerHTML =Instance.getCounter();
+  
 }
-
-
-
-
-
 
 function deleteItems() {
   localStorage.clear();
