@@ -15,7 +15,7 @@ var row = 1;
 var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
 
 // If no existing data, create an array
-// Otherwise, convert the localStorage string to an array
+// Otherwise, convert the localStorage string to an object
 if (existingEntries == null) existingEntries = {};
 
 
@@ -32,12 +32,8 @@ function displayMembers() {
   //get inputs from fields
   var name = document.getElementById("name").value;
 
-
-
-
   //variable to store radio input 
   var radio;
-
 
   //loop through the length of the two radio button 
   for (i = 0; i < radioBtn.length; i++) {
