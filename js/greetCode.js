@@ -75,12 +75,12 @@ entry.addEventListener("click", function () {
 
 
   } else {
-    document.getElementById("error").innerHTML = "Please see to it that you enter your name & choose a language!";
-    setTimeout(function () {
-      document.getElementById("error").innerHTML = "";
-      location.reload();
-    }, 10000);
-    return;
+    // document.getElementById("error").innerHTML = "Please see to it that you enter your name & choose a language!";
+    // setTimeout(function () {
+    //   document.getElementById("error").innerHTML = "";
+    //   location.reload();
+    // }, 10000);
+    // return;
 
   }
 
@@ -89,8 +89,17 @@ entry.addEventListener("click", function () {
     setTimeout(function () {
       document.getElementById("error").innerHTML = "";
       location.reload();
-    }, 10000);
+    }, 5000);
     return;
+
+  }else if(!strName){
+    document.getElementById("error").innerHTML = "Please see to it that you enter a name!";
+    setTimeout(function () {
+      document.getElementById("error").innerHTML = "";
+      location.reload();
+    }, 5000);
+    return;
+
 
   }
 
@@ -102,7 +111,7 @@ entry.addEventListener("click", function () {
     document.getElementById('tick2').checked = false;
     document.getElementById('tick3').checked = false;
   } else {
-    document.getElementById("error").innerHTML = "Please enter Alphabetical values!";
+    document.getElementById("error").innerHTML = "Please enter Alphabets only!";
     setTimeout(function () {
       document.getElementById("error").innerHTML = "";
       location.reload();
