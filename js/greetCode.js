@@ -63,6 +63,17 @@ entry.addEventListener("click", function () {
   Instance.addNames(name, radio);
   var strName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
+  if(!strName && !radio ){
+    document.getElementById("error").innerHTML = "Please see to it that you enter a name & choose a language!";
+    setTimeout(function () {
+      document.getElementById("error").innerHTML = "";
+      location.reload();
+    }, 5000);
+    return;
+
+  }
+
+
   if (strName !== '' && radio !== '') {
     //look at the value checked in the radioBtns then greet in the checked language
     if (radio === "English") {
@@ -74,15 +85,8 @@ entry.addEventListener("click", function () {
     }
 
 
-  } else {
-    // document.getElementById("error").innerHTML = "Please see to it that you enter your name & choose a language!";
-    // setTimeout(function () {
-    //   document.getElementById("error").innerHTML = "";
-    //   location.reload();
-    // }, 10000);
-    // return;
+  } 
 
-  }
 
   if (!radio) {
     document.getElementById("error").innerHTML = "Please see to it that you choose a language!";
@@ -99,10 +103,9 @@ entry.addEventListener("click", function () {
       location.reload();
     }, 5000);
     return;
-
-
   }
 
+ 
 
   if (strName.match(RegExp)) {
     cell3.innerHTML = Instance.greetMe(radio);
