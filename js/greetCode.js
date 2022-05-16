@@ -50,14 +50,7 @@ entry.addEventListener("click", function () {
       }
     }
     Instance.setName(name);
-    //look at the value checked in the radioBtns then greet in the checked language
-    if (radio === "English") {
-      cell2.innerHTML = "Hello, " + Instance.getName();
-    } else if (radio === "IsiXhosa") {
-      cell2.innerHTML = "Molo, " + Instance.getName();
-    } else if (radio === "Afrikaans") {
-      cell2.innerHTML = "Hallo, " + Instance.getName();
-    }
+    
     Instance.addNames(name, radio);
     if (name.match(RegExp)) {
       var strName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -65,14 +58,22 @@ entry.addEventListener("click", function () {
       document.getElementById('tick').checked = false;
       document.getElementById('tick2').checked = false;
       document.getElementById('tick3').checked = false;
-    } else if (!name || !radio) {
+    } else if (name === "") {
       document.getElementById("error").innerHTML = "Please see to it that you fill every textbox!";
       setTimeout(function () {
         document.getElementById("error").innerHTML = "";
         location.reload();
       }, 5000);
       return;
-    } else {
+    } else if(!radio){
+      document.getElementById("error").innerHTML = "Please see to it that you fill every textbox!";
+      setTimeout(function () {
+        document.getElementById("error").innerHTML = "";
+        location.reload();
+      }, 5000);
+      return;
+
+    }else {
       document.getElementById("error").innerHTML = "Please enter Alphabetical values!";
       setTimeout(function () {
         document.getElementById("error").innerHTML = "";
@@ -80,9 +81,17 @@ entry.addEventListener("click", function () {
       }, 5000);
       return;
     }
-    //append value of the chosen language to my cells
-    cell3.innerHTML = radio;
-
+    //look at the value checked in the radioBtns then greet in the checked language
+    if (radio === "English") {
+      cell2.innerHTML = "Hello, " + Instance.getName();
+      cell3.innerHTML = radio;
+    } else if (radio === "IsiXhosa") {
+      cell2.innerHTML = "Molo, " + Instance.getName();
+      cell3.innerHTML = radio;
+    } else if (radio === "Afrikaans") {
+      cell2.innerHTML = "Hallo, " + Instance.getName();
+      cell3.innerHTML = radio;
+    }
     localStorage.setItem("allEntries", JSON.stringify(Instance.namesAdded()));
 
     //calling counter function
