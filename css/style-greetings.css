@@ -352,12 +352,14 @@ h3{
   }
 
   .errorMessage{
+    font-weight: bold;
     text-align: center;
     font-size:20pt;
     color:#c4362c;
   }
 
   .errorMessage1{
+    font-weight: bold;
     text-align: center;
     font-size: 20pt;
     color:#4CAF50;
