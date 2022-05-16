@@ -29,11 +29,20 @@ function myCounter() {
   localStorage.setItem("on_click_counter", counter);
   //retrieve counter from local storage
   document.getElementById("counter").innerHTML = Instance.getCounter();
+
+
 }
 
 function deleteItems() {
   localStorage.clear();
-  location.reload();
+  document.getElementById("error1").innerHTML = "Clearing storage...";
+  setTimeout(function () {
+    document.getElementById("error").innerHTML = "";
+    
+    location.reload();
+  }, 5000);
+  return;
+
 }
 // Event Listener for the button
 var entry = document.getElementById("Entry");
@@ -54,25 +63,37 @@ entry.addEventListener("click", function () {
   Instance.addNames(name, radio);
   var strName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-  if(!strName){
-    document.getElementById("error").innerHTML = "Please see to it that you enter your name!";
+  if (strName !== '' && radio !== '') {
+    //look at the value checked in the radioBtns then greet in the checked language
+    if (radio === "English") {
+      cell2.innerHTML = "Hello, " + Instance.getName();
+    } else if (radio === "IsiXhosa") {
+      cell2.innerHTML = "Molo, " + Instance.getName();
+    } else if (radio === "Afrikaans") {
+      cell2.innerHTML = "Hallo, " + Instance.getName();
+    }
+
+
+  } else {
+    document.getElementById("error").innerHTML = "Please see to it that you enter your name & choose a language!";
     setTimeout(function () {
       document.getElementById("error").innerHTML = "";
       location.reload();
-    }, 5000);
+    }, 10000);
     return;
 
   }
 
-  if(!radio){
+  if (!radio) {
     document.getElementById("error").innerHTML = "Please see to it that you choose a language!";
     setTimeout(function () {
       document.getElementById("error").innerHTML = "";
       location.reload();
-    }, 5000);
+    }, 10000);
     return;
 
   }
+
 
   if (strName.match(RegExp)) {
     cell3.innerHTML = Instance.greetMe(radio);
@@ -85,23 +106,12 @@ entry.addEventListener("click", function () {
     setTimeout(function () {
       document.getElementById("error").innerHTML = "";
       location.reload();
-    }, 5000);
+    }, 10000);
     return;
 
   }
 
-  if(strName !=='' && radio !==''){
-    //look at the value checked in the radioBtns then greet in the checked language
-  if (radio === "English") {
-    cell2.innerHTML = "Hello, " + Instance.getName();
-  } else if (radio === "IsiXhosa") {
-    cell2.innerHTML = "Molo, " + Instance.getName();
-  } else if (radio === "Afrikaans") {
-    cell2.innerHTML = "Hallo, " + Instance.getName();
-  }
 
-
-  }
   //append value of the chosen language to my cells
   cell3.innerHTML = radio;
 
