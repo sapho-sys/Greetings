@@ -48,7 +48,7 @@ function deleteItems() {
 var entry = document.getElementById("Entry");
 entry.addEventListener("click", function () {
   //get inputs from fields
-  var name = document.getElementById("name").value;
+  var name = document.getElementById("name").value.trim();
   //variable to store radio input 
   var radio;
   //loop through the length of the two radio button 
